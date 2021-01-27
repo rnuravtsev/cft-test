@@ -21,8 +21,6 @@ import thunk from "redux-thunk";
 // );
 
 ReactDOM.render(
-    // <Provider store={store}>
-    <App/>
-    // </Provider>,
-    document.querySelector(`#root`),
+    <App/>,
+    document.querySelector(`#root`)
 );
