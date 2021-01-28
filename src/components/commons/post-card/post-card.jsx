@@ -1,7 +1,8 @@
 import {Button, Card, CardActionArea, CardActions, CardContent, Typography} from "@material-ui/core";
+import {Link} from "react-router-dom";
 
 const PostCard = (props) => {
-  const {title, body} = props.item;
+  const {id, title, body} = props.item;
   return (
     <Card>
       <CardActionArea>
@@ -16,7 +17,7 @@ const PostCard = (props) => {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Learn More
+          <Link to={`/posts/${id}`}>Learn More</Link>
         </Button>
       </CardActions>
     </Card>
@@ -25,6 +26,7 @@ const PostCard = (props) => {
 
 PostCard.propTypes = {
   item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired
   })

@@ -1,16 +1,9 @@
 import Header from "../../components/commons/sections/header/header";
-import axios from "axios";
 import UserCard from "../../components/commons/user-card/user-card";
 import {Grid} from "@material-ui/core";
 
-const Users = () => {
-  const [users, setUsers] = React.useState([]);
-
-  React.useEffect(() => {
-    axios.get(`https://jsonplaceholder.typicode.com/users`)
-      .then((result) => setUsers(result.data))
-      .catch((e) => console.log(e));
-  }, []);
+const Users = (props) => {
+  const {users} = props;
 
   return (
     <>
@@ -18,7 +11,7 @@ const Users = () => {
       <h1>Users</h1>
       <Grid container spacing={3}>
         {users.map((user, i) => (
-          <Grid key={`testItem-${i}`} item xs={3}>
+          <Grid key={`testItem-${i}`} item xs={2}>
             <UserCard user={user}/>
           </Grid>
         ))}

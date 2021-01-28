@@ -5,28 +5,82 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
+import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
+
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+
+const useStyles = makeStyles((theme) => ({
+  userCardWrapper: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: theme.spacing(2)
+  },
+
+  userCardName: {
+    textDecoration: "none"
+  },
+
+  userCardAvatar: {
+    width: "60px",
+    height: "60px"
+  },
+
+  userCardButton: {
+    color: "ghostwhite"
+  },
+
+  userCardInfo: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "end"
+  },
+
+  userCardLocation: {
+    display: "flex",
+    alignItems: "initial "
+  }
+
+}));
 
 
 const UserCard = (props) => {
-  const preventDefault = (evt) => evt.preventDefault();
-  const {username, email} = props.user;
+  const classes = useStyles();
+  const {id, username, address} = props.user;
+  const {city} = address;
 
   return (
     <Card>
       <CardContent>
-        <Typography gutterBottom variant="h6" component="h3">
-          {username}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          <Link href="#" onClick={preventDefault}>
-            {email}
+        <Box className={classes.userCardWrapper}>
+          <Link to={`users/${id}`}>
+            <Avatar
+              variant="circular"
+              className={classes.userCardAvatar}
+              src="https://stevensegallery.com/80/80"
+            />
           </Link>
-        </Typography>
+          <Box
+            className={classes.userCardInfo}
+          >
+            <Typography
+              variant="subtitle1" component="h3">
+              <Link className={classes.userCardName} to={`users/${id}`}>{username}</Link>
+            </Typography>
+            <Typography
+              className={classes.userCardLocation}
+              variant="subtitle1" component="p">
+              <LocationOnIcon/> {city}
+            </Typography>
+          </Box>
+        </Box>
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary">
-          Show Posts
+        <Button fullWidth variant="contained" size="small" color="primary">
+          <Link to={`/users/${id}`} className={classes.userCardButton}>More</Link>
         </Button>
       </CardActions>
     </Card>

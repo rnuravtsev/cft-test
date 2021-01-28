@@ -3,14 +3,8 @@ import Header from "../../components/commons/sections/header/header";
 import PostCard from "../../components/commons/post-card/post-card";
 import { Grid } from "@material-ui/core";
 
-const AllPosts = () => {
-  const [posts, setPosts] = React.useState([]);
-  const [users, setUsers] = React.useState([]);
-
-  React.useEffect( () => {
-    axios.get(`https://jsonplaceholder.typicode.com/posts`)
-      .then((result) => setPosts(result.data));
-  }, []);
+const Posts = (props) => {
+  const {posts} = props;
 
   return (
     <>
@@ -27,4 +21,4 @@ const AllPosts = () => {
   )
 };
 
-export default AllPosts;
+export default Posts;
