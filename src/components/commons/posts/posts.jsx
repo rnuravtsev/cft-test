@@ -12,13 +12,15 @@ const useStlyes = makeStyles({
 
 
 const Posts = (props) => {
-  const {posts} = props;
-  const classes = useStlyes();
-  const postsCount = posts.length;
+  const {posts, userId} = props;
   const POSTS_COUNT = 8;
+  const classes = useStlyes();
   const [renderedPostsCount, setPostsCount] = React.useState(POSTS_COUNT);
 
-  const renderPosts = posts.slice(0, renderedPostsCount);
+  const currentUsers = posts.filter((el) => el.userId === userId);
+  const postsCount = currentUsers.length;
+
+  const renderPosts = currentUsers.slice(0, renderedPostsCount);
 
   return (
     <>
@@ -42,6 +44,10 @@ const Posts = (props) => {
       </Grid>
     </>
   )
+};
+
+Posts.propTypes = {
+  userId: PropTypes.number.isRequired
 };
 
 export default Posts;
