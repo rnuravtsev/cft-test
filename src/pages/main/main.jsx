@@ -2,7 +2,10 @@ import Header from "components/commons/sections/header/header";
 
 const Main = () => {
   return (
-    <Header/>
+    <>
+      <Header/>
+      <h1>Welcome</h1>
+    </>
   )
 };
 
