@@ -1,10 +1,24 @@
 import {Button, Card, CardActionArea, CardActions, CardContent, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import {makeStyles} from "@material-ui/core";
+
+const useStyles = makeStyles({
+  postCard: {
+    height: `100%`,
+    display: "flex",
+    flexDirection: "column"
+  },
+  postCardActions: {
+    marginTop: `auto`
+  }
+});
 
 const PostCard = (props) => {
-  const {id, title, body} = props.item;
+  const {id, title, body} = props.post;
+  const classes = useStyles();
+
   return (
-    <Card>
+    <Card className={classes.postCard}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -15,7 +29,7 @@ const PostCard = (props) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.postCardActions}>
         <Button size="small" color="primary">
           <Link to={`/posts/${id}`}>Learn More</Link>
         </Button>
@@ -25,7 +39,7 @@ const PostCard = (props) => {
 };
 
 PostCard.propTypes = {
-  item: PropTypes.shape({
+  post: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired

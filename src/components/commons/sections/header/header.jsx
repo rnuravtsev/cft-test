@@ -35,17 +35,6 @@ const Header = () => {
               </NavLink>
             </Typography>
           </Grid>
-          <Grid item>
-            <Typography>
-              <NavLink
-                exact
-                className={classes.navLink}
-                to="/posts"
-              >
-                Posts
-              </NavLink>
-            </Typography>
-          </Grid>
            <Grid item>
              <Typography>
                <NavLink

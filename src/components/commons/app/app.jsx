@@ -1,9 +1,8 @@
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../../../pages/main/main";
-import Posts from "../../../pages/posts/posts.connect";
 import Post from "../../../pages/post/post";
 import Users from "../../../pages/users/users.connect";
-import User from "../../../pages/user/user";
+import User from "../../../pages/user/user.connect";
 import Loading from "../loading/loading";
 
 import {getMatchingItem} from "../../../utils/utils";
@@ -27,12 +26,6 @@ const App = (props) => {
             path="/"
           >
             <Main/>
-          </Route>
-          <Route
-            exact
-            path="/posts"
-          >
-            <Posts/>
           </Route>
           <Route
             exact

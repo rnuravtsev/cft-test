@@ -3,10 +3,11 @@ import {ActionType} from "./action";
 
 const initialState = {
   users: [],
-  posts: []
+  posts: [],
+  comments: []
 };
 
-const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_POSTS:
       return extend(state, {
@@ -18,10 +19,14 @@ const reducer = (state = initialState, action) => {
         users: action.payload
       });
 
+    case ActionType.LOAD_COMMENTS:
+      return extend(state, {
+        comments: action.payload
+      })
+
     default:
       return state;
   }
 };
 
-export {reducer};
 

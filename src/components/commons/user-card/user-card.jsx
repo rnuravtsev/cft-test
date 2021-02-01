@@ -79,9 +79,7 @@ const UserCard = (props) => {
         </Box>
       </CardContent>
       <CardActions>
-        <Button fullWidth variant="contained" size="small" color="primary">
-          <Link to={`/users/${id}`} className={classes.userCardButton}>More</Link>
-        </Button>
+        <Button component={Link} to={`/users/${id}`} className={classes.userCardButton} fullWidth variant="contained" size="small" color="primary">More</Button>
       </CardActions>
     </Card>
   );
