@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-150px",
     zIndex: 10,
     "& a": {
-      color: "#ccff00aa"
+      color: theme.palette.primary.dark
     }
   },
 
   userInfoBackground: {
-    backgroundColor: "#734f96"
+    backgroundColor: theme.palette.primary.main
   },
 
   userInfoImg: {
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   userInfoIcon: {
-    color: "#a69999",
+    color: theme.palette.secondary.main,
     marginRight: theme.spacing(1)
   },
 
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const User = (props) => {
-  const {user, comments} = props;
+  const {user} = props;
   const {id, username, name, email, phone, address} = user;
 
   const classes = useStyles();
@@ -167,8 +167,7 @@ User.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,
     username: PropTypes.string.isRequired,
-  }).isRequired,
-  comments: PropTypes.arrayOf.isRequired
+  }).isRequired
 };
 
 export default User;

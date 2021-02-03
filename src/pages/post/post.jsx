@@ -7,6 +7,9 @@ const useStyles = makeStyles({
   postDivider: {
     margin: `10px 0`,
     padding: `5px 0`
+  },
+  postTitle: {
+    textAlign: `center`
   }
 });
 
@@ -23,6 +26,7 @@ const Post = (props) => {
     >
       <Grid item xs={8}>
         <Typography
+          className={classes.postTitle}
           component="h1"
           variant="h2"
         >{title}</Typography>
@@ -31,6 +35,7 @@ const Post = (props) => {
           component="p"
           variant="body1"
         >{body}</Typography>
+        <Divider className={classes.postDivider}/>
       </Grid>
       <Grid item xs={8}>
         <Comments postId={id}/>
