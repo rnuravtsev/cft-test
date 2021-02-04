@@ -58,7 +58,7 @@ const CommentForm = (props) => {
 
   const formSubmitHandler = (evt) => {
     evt.preventDefault();
-    onSubmit(postId, {comment, id: nanoid(10)});
+    onSubmit(postId, {...comment, id: nanoid(10)});
   };
 
   const textareaAutosizeChangeHandler = (evt) => {

@@ -170,9 +170,9 @@ User.propTypes = {
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
-    address: PropTypes.arrayOf(PropTypes.shape({
+    address: PropTypes.shape({
       city: PropTypes.string.isRequired
-    })).isRequired
+    }).isRequired
   }).isRequired
 };
 

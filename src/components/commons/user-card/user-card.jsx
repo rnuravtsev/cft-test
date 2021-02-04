@@ -88,9 +88,9 @@ UserCard.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,
     username: PropTypes.string.isRequired,
-    address: PropTypes.arrayOf(PropTypes.shape({
+    address: PropTypes.shape({
       city: PropTypes.string.isRequired
-    })).isRequired
+    }).isRequired
   }).isRequired
 };
 
