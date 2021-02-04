@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
-import Posts from "./posts";
+import PostsList from "./posts-list";
 
 const mapStateToProps = (state) => ({
   posts: state.DATA.posts
 });
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps)(PostsList);

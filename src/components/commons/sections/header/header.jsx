@@ -1,5 +1,5 @@
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {makeStyles} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
@@ -10,9 +10,9 @@ const useStyles = makeStyles({
     alignItems: `center`
   },
   navLink: {
-    "&.active" : {
-      color: "white",
-      fontWeight: "bold"
+    " &.active": {
+      color: `white`,
+      fontWeight: `bold`
     }
   }
 });
@@ -22,8 +22,8 @@ const Header = () => {
 
   return (
     <AppBar position="static">
-        <Toolbar className={classes.root}>
-         <Grid container spacing={3}>
+      <Toolbar className={classes.root}>
+        <Grid container spacing={3}>
           <Grid item>
             <Typography>
               <NavLink
@@ -35,21 +35,21 @@ const Header = () => {
               </NavLink>
             </Typography>
           </Grid>
-           <Grid item>
-             <Typography>
-               <NavLink
-                 exact
-                 className={classes.navLink}
-                 to="/users"
-               >
-                 Users
-               </NavLink>
-             </Typography>
-           </Grid>
+          <Grid item>
+            <Typography>
+              <NavLink
+                exact
+                className={classes.navLink}
+                to="/users"
+              >
+                Users
+              </NavLink>
+            </Typography>
+          </Grid>
         </Grid>
       </Toolbar>
     </AppBar>
-  )
+  );
 };
 
 export default Header;

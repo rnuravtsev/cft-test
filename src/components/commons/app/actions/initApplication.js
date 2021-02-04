@@ -10,4 +10,4 @@ export const initApplication = () => (dispatch) => {
     .then(() => (
       dispatch(setAppReady())
     ));
-}
+};
