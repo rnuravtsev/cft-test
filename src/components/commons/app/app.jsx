@@ -4,6 +4,7 @@ import Post from "../../../pages/post/post";
 import Users from "../../../pages/users/users.connect";
 import User from "../../../pages/user/user.connect";
 import Loading from "../loading/loading";
+import {postsType, usersType} from "../../../commonPropTypes";
 
 import {getMatchingItem} from "../../../utils/utils";
 
@@ -14,7 +15,7 @@ const App = (props) => {
 
   React.useEffect(() => {
     initApplication();
-  }, []);
+  }, [initApplication]);
 
   return (
     <>
@@ -54,7 +55,14 @@ const App = (props) => {
         </Switch>
       </BrowserRouter>
     </>
-  )
+  );
+};
+
+App.propTypes = {
+  posts: postsType,
+  users: usersType,
+  isAppReady: PropTypes.bool.isRequired,
+  initApplication: PropTypes.func.isRequired
 };
 
 export default App;

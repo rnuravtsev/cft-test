@@ -10,4 +10,4 @@ export const NameSpace = {
 export default combineReducers({
   [NameSpace.DATA]: appData,
   [NameSpace.APP]: appProcess,
-})
+});

@@ -12,10 +12,10 @@ import {theme} from "./theme";
 const api = createAPI();
 
 const store = createStore(
-  rootReducer,
-  composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument(api))
-  )
+    rootReducer,
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 ReactDOM.render(

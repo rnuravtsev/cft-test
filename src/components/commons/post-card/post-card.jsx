@@ -5,8 +5,8 @@ import {makeStyles} from "@material-ui/core";
 const useStyles = makeStyles({
   postCard: {
     height: `100%`,
-    display: "flex",
-    flexDirection: "column"
+    display: `flex`,
+    flexDirection: `column`
   },
   postCardActions: {
     marginTop: `auto`
@@ -35,7 +35,7 @@ const PostCard = (props) => {
         </Button>
       </CardActions>
     </Card>
-  )
+  );
 };
 
 PostCard.propTypes = {

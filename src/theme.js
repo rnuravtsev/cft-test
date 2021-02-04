@@ -16,4 +16,4 @@ export const theme = createMuiTheme({
       main: ``
     }
   }
-})
+});

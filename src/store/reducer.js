@@ -22,7 +22,7 @@ export const reducer = (state = initialState, action) => {
     case ActionType.LOAD_COMMENTS:
       return extend(state, {
         comments: action.payload
-      })
+      });
 
     default:
       return state;

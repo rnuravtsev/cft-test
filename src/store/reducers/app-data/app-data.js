@@ -17,15 +17,25 @@ const appData = (state = initialState, action) => {
     case ActionType.LOAD_POSTS:
       return extend(state, {
         posts: action.payload
-      })
+      });
 
     case ActionType.LOAD_COMMENTS:
       return extend(state, {
         comments: action.payload
-      })
+      });
+
+    case ActionType.ADD_COMMENT:
+      return extend(state, {
+        comments: [...state.comments, action.payload]
+      });
+
+    case ActionType.DELETE_COMMENT:
+      return extend(state, {
+        comments: state.comments.filter((comment) => comment.id !== action.payload)
+      });
 
     default:
-      return state
+      return state;
   }
 };
 

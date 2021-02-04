@@ -1,7 +1,7 @@
 import {Grid, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
-import Comments from "../../components/commons/comment/comments.connect";
+import Comments from "../../components/commons/comments-list/comments-list.connect";
 
 const useStyles = makeStyles({
   postDivider: {
@@ -41,13 +41,13 @@ const Post = (props) => {
         <Comments postId={id}/>
       </Grid>
     </Grid>
-  )
+  );
 };
 
 Post.propTypes = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired
-}).isRequired
+}).isRequired;
 
 export default Post;

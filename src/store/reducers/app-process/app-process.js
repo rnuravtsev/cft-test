@@ -13,7 +13,7 @@ const appProcess = (state = initialState, action) => {
       });
 
     default:
-      return state
+      return state;
   }
 };
 

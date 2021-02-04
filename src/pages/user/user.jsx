@@ -3,30 +3,30 @@ import {makeStyles} from "@material-ui/core";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
-import Posts from "../../components/commons/posts/posts.connect";
+import Posts from "../../components/commons/posts-list/posts-list.connect";
 
 const useStyles = makeStyles((theme) => ({
   background: {
-    position: "relative",
-    display: "flex",
-    justifyContent: "center",
+    position: `relative`,
+    display: `flex`,
+    justifyContent: `center`,
     zIndex: 2,
     "&::before": {
-      content: "''",
-      position: "absolute",
-      display: "block",
+      content: `''`,
+      position: `absolute`,
+      display: `block`,
       top: 0,
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      backgroundColor: `rgba(0, 0, 0, 0.5)`,
       zIndex: 5
     }
   },
 
   userInfo: {
-    position: "relative",
-    marginTop: "-150px",
+    position: `relative`,
+    marginTop: `-150px`,
     zIndex: 10,
     "& a": {
       color: theme.palette.primary.dark
@@ -38,27 +38,27 @@ const useStyles = makeStyles((theme) => ({
   },
 
   userInfoImg: {
-    width: "100%",
-    height: "auto",
+    width: `100%`,
+    height: `auto`,
   },
 
   userInfoAvatar: {
-    width: "200px",
-    height: "200px",
-    boxShadow: "0 0 15px 5px rgb(255, 255, 255)"
+    width: `200px`,
+    height: `200px`,
+    boxShadow: `0 0 15px 5px rgb(255, 255, 255)`
   },
 
   userInfoName: {
-    color: "whitesmoke",
+    color: `whitesmoke`,
   },
 
   userInfoLocation: {
-    display: "flex",
-    alignItems: "center"
+    display: `flex`,
+    alignItems: `center`
   },
 
   userInfoText: {
-    color: "whitesmoke"
+    color: `whitesmoke`
   },
 
   userInfoIcon: {
@@ -67,9 +67,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   userInfoWrapper: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
+    display: `flex`,
+    justifyContent: `space-between`,
+    alignItems: `center`
   }
 }));
 
@@ -159,14 +159,20 @@ const User = (props) => {
         </Grid>
       </Grid>
     </>
-  )
+  );
 };
 
 
 User.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
+    address: PropTypes.arrayOf(PropTypes.shape({
+      city: PropTypes.string.isRequired
+    })).isRequired
   }).isRequired
 };
 

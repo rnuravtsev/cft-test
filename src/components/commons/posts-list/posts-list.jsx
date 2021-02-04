@@ -1,6 +1,7 @@
 import PostCard from "../post-card/post-card";
 import {Grid, Button} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core";
+import {postsType} from "../../../commonPropTypes";
 
 const useStlyes = makeStyles({
   loadMoreButton: {
@@ -11,7 +12,7 @@ const useStlyes = makeStyles({
 });
 
 
-const Posts = (props) => {
+const PostsList = (props) => {
   const {posts, userId} = props;
   const POSTS_COUNT = 8;
   const classes = useStlyes();
@@ -25,29 +26,35 @@ const Posts = (props) => {
   return (
     <>
       <Grid container style={{padding: `20px`}} spacing={3}>
-        {renderPosts.map((el, i) => (
-          <Grid key={`postItem-${i}`} item xs={3}>
-            <PostCard post={el}/>
+        {
+          renderPosts.map((el, i) => (
+            <Grid key={`postItem-${i}`} item xs={3}>
+              <PostCard post={el}/>
+            </Grid>
+          ))
+        }
+        {
+          renderedPostsCount < postsCount &&
+          <Grid item xs={12}>
+            <Button
+              className={classes.loadMoreButton}
+              onClick={() => {
+                setPostsCount(renderedPostsCount + POSTS_COUNT);
+              }}
+              size="medium"
+            >
+              Load more
+            </Button>
           </Grid>
-          ))}
-        {renderedPostsCount < postsCount &&
-        <Grid item xs={12}>
-          <Button
-            className={classes.loadMoreButton}
-            onClick={() => {setPostsCount(renderedPostsCount + POSTS_COUNT)}}
-            size="medium"
-          >
-            Load more
-          </Button>
-        </Grid>}
-
+        }
       </Grid>
     </>
-  )
+  );
 };
 
-Posts.propTypes = {
+PostsList.propTypes = {
+  posts: postsType,
   userId: PropTypes.number.isRequired
 };
 
-export default Posts;
+export default PostsList;

@@ -13,37 +13,36 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const useStyles = makeStyles((theme) => ({
   userCardWrapper: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    display: `flex`,
+    justifyContent: `space-between`,
+    alignItems: `center`,
     marginBottom: theme.spacing(2)
   },
 
   userCardName: {
-    textDecoration: "none"
+    textDecoration: `none`
   },
 
   userCardAvatar: {
-    width: "60px",
-    height: "60px"
+    width: `60px`,
+    height: `60px`
   },
 
   userCardButton: {
-    color: "ghostwhite"
+    color: `ghostwhite`
   },
 
   userCardInfo: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "end"
+    display: `flex`,
+    flexDirection: `column`,
+    justifyContent: `center`,
+    alignItems: `end`
   },
 
   userCardLocation: {
-    display: "flex",
-    alignItems: "initial "
+    display: `flex`,
+    alignItems: `initial`
   }
-
 }));
 
 
@@ -83,6 +82,16 @@ const UserCard = (props) => {
       </CardActions>
     </Card>
   );
+};
+
+UserCard.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    username: PropTypes.string.isRequired,
+    address: PropTypes.arrayOf(PropTypes.shape({
+      city: PropTypes.string.isRequired
+    })).isRequired
+  }).isRequired
 };
 
 export default UserCard;

@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
-import Comments from "./comments";
+import CommentsList from "./comments-list";
 
 const mapStateToProps = (state) => ({
   comments: state.DATA.comments
 });
 
-export default connect(mapStateToProps)(Comments);
+export default connect(mapStateToProps)(CommentsList);

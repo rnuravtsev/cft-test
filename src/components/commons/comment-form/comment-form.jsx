@@ -1,11 +1,12 @@
-import {Box, Button, Paper, Typography, TextField, TextareaAutosize, makeStyles} from "@material-ui/core";
+import {Button, Paper, Typography, TextField, TextareaAutosize, makeStyles} from "@material-ui/core";
+import {nanoid} from "nanoid";
 
 const useStyles = makeStyles((theme) => ({
   commentFormPaper: {
     position: `relative`,
     padding: `20px`,
     "&::before, &::after": {
-      content: '""',
+      content: `""`,
       position: `absolute`,
       display: `block`,
       width: `15%`,
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 const CommentForm = (props) => {
   const {onSubmit, postId} = props;
   const [comment, setComment] = React.useState({
+    postId,
     name: ``,
     email: ``,
     body: ``
@@ -56,7 +58,7 @@ const CommentForm = (props) => {
 
   const formSubmitHandler = (evt) => {
     evt.preventDefault();
-    onSubmit(postId, comment);
+    onSubmit(postId, {comment, id: nanoid(10)});
   };
 
   const textareaAutosizeChangeHandler = (evt) => {
@@ -130,7 +132,7 @@ const CommentForm = (props) => {
         </Button>
       </form>
     </Paper>
-  )
+  );
 };
 
 CommentForm.propTypes = {
