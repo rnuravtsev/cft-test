@@ -1,21 +1,24 @@
-import PostCard from "../post-card/post-card";
+import PostCard from "../post-card/post-card.connect";
 import {Grid, Button} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core";
-import {postsType} from "../../../commonPropTypes";
+import {postsType} from "../../../common-prop-types";
+import NewPost from "../new-post/new-post.connect";
 
-const useStlyes = makeStyles({
+const useStyles = makeStyles({
+  newPost: {
+    maxWidth: `300px`
+  },
   loadMoreButton: {
-    margin: `0 auto`,
     display: `block`,
-    backgroundColor: `white`,
+    margin: `0 auto`,
   }
 });
 
 
 const PostsList = (props) => {
   const {posts, userId} = props;
-  const POSTS_COUNT = 8;
-  const classes = useStlyes();
+  const POSTS_COUNT = 7;
+  const classes = useStyles();
   const [renderedPostsCount, setPostsCount] = React.useState(POSTS_COUNT);
 
   const currentUsers = posts.filter((el) => el.userId === userId);
@@ -26,6 +29,13 @@ const PostsList = (props) => {
   return (
     <>
       <Grid container style={{padding: `20px`}} spacing={3}>
+        <Grid
+          className={classes.newPost}
+          item
+          xs
+        >
+          <NewPost userId={userId}/>
+        </Grid>
         {
           renderPosts.map((el, i) => (
             <Grid key={`postItem-${i}`} item xs={3}>
@@ -38,6 +48,8 @@ const PostsList = (props) => {
           <Grid item xs={12}>
             <Button
               className={classes.loadMoreButton}
+              color="secondary"
+              variant="contained"
               onClick={() => {
                 setPostsCount(renderedPostsCount + POSTS_COUNT);
               }}

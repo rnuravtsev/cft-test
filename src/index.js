@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import {createAPI} from "./services/api";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {theme} from "./theme";
+import GlobalStyles from "./global-styles";
 
 const api = createAPI();
 
@@ -22,6 +23,7 @@ ReactDOM.render(
     <Provider store={store}>
       <MuiThemeProvider theme={theme}>
         <App/>
+        <GlobalStyles/>
       </MuiThemeProvider>
     </Provider>,
     document.querySelector(`#root`)

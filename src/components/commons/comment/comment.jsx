@@ -1,7 +1,7 @@
 import {Avatar, Divider, ListItem, ListItemAvatar, ListItemText, Typography, Button, Box} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   fonts: {
     fontWeight: `bold`
   },
@@ -12,8 +12,11 @@ const useStyles = makeStyles({
     display: `flex`,
     alignItems: `center`,
     justifyContent: `normal`
+  },
+  commentDeleteButton: {
+    color: theme.palette.error.main
   }
-});
+}));
 
 const Comment = (props) => {
   const {comment, deleteReview} = props;
@@ -32,10 +35,10 @@ const Comment = (props) => {
                 {comment.name}
               </Typography>
               <Button
-                color="primary"
+                className={classes.commentDeleteButton}
                 onClick={() => deleteReview(comment.id)}
               >
-                delete
+                Delete
               </Button>
             </Box>
           }

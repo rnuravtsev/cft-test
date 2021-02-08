@@ -4,7 +4,7 @@ import Post from "../../../pages/post/post";
 import Users from "../../../pages/users/users.connect";
 import User from "../../../pages/user/user.connect";
 import Loading from "../loading/loading";
-import {postsType, usersType} from "../../../commonPropTypes";
+import {postsType, usersType} from "../../../common-prop-types";
 
 import {getMatchingItem} from "../../../utils/utils";
 

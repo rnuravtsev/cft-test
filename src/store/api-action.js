@@ -1,4 +1,4 @@
-import {loadPosts, loadUsers, loadComments, addComment, deleteComment} from "./action";
+import {loadPosts, loadUsers, loadComments, addComment, deleteComment, addPost, removePost} from "./action";
 
 export const fetchPosts = () => (dispatch, getState, api) => (
   api.get(`/posts`)
@@ -20,8 +20,18 @@ export const addReview = (postId, comment) => (dispatch, _getState, api) => (
     .then(() => dispatch(addComment(comment)))
 );
 
-export const deleteReview = (commentId) => (dispatch, _getState) => (
+export const deleteReview = (commentId) => (dispatch) => (
   dispatch(deleteComment(commentId))
   // api.delete(`posts/${postId}/comments`, commentId)
   //   .then(() => dispatch(deleteComment(commentId)))
+);
+
+export const createPost = (postData) => (dispatch, _getState, api) => (
+  api.post(`posts/`)
+    .then(() => dispatch(addPost(postData)))
+);
+
+export const deletePost = (postId) => (dispatch, _getState, api) => (
+  api.delete(`/posts/${postId}`)
+    .then(() => dispatch(removePost(postId)))
 );
