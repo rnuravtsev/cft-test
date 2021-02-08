@@ -137,7 +137,10 @@ const CommentForm = (props) => {
 
 CommentForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  postId: PropTypes.number.isRequired
+  postId: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired
 };
 
 export default CommentForm;

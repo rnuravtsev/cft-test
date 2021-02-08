@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import {makeStyles} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: `flex`,
     justifyContent: ``,
@@ -11,11 +11,11 @@ const useStyles = makeStyles({
   },
   navLink: {
     " &.active": {
-      color: `white`,
+      color: theme.palette.secondary.main,
       fontWeight: `bold`
     }
   }
-});
+}));
 
 const Header = () => {
   const classes = useStyles();

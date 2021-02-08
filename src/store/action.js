@@ -4,6 +4,8 @@ export const ActionType = {
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   ADD_COMMENT: `ADD_COMMENT`,
   DELETE_COMMENT: `DELETE_COMMENT`,
+  ADD_POST: `ADD_POST`,
+  REMOVE_POST: `REMOVE_POST`,
   SET_APP_READY: `SET_APP_READY`
 };
 
@@ -30,6 +32,16 @@ export const addComment = (comment) => ({
 export const deleteComment = (comment) => ({
   type: ActionType.DELETE_COMMENT,
   payload: comment
+});
+
+export const addPost = (post) => ({
+  type: ActionType.ADD_POST,
+  payload: post
+});
+
+export const removePost = (postId) => ({
+  type: ActionType.REMOVE_POST,
+  payload: postId
 });
 
 export const setAppReady = () => ({

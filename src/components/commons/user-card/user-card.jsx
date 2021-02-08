@@ -12,6 +12,10 @@ import Box from "@material-ui/core/Box";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const useStyles = makeStyles((theme) => ({
+  userCardRoot: {
+    // backgroundColor: theme.palette.secondary.main
+  },
+
   userCardWrapper: {
     display: `flex`,
     justifyContent: `space-between`,
@@ -52,7 +56,7 @@ const UserCard = (props) => {
   const {city} = address;
 
   return (
-    <Card>
+    <Card className={classes.userCardRoot}>
       <CardContent>
         <Box className={classes.userCardWrapper}>
           <Link to={`users/${id}`}>
@@ -66,12 +70,12 @@ const UserCard = (props) => {
             className={classes.userCardInfo}
           >
             <Typography
-              variant="subtitle1" component="h3">
+              variant="h6" component="h3">
               <Link className={classes.userCardName} to={`users/${id}`}>{username}</Link>
             </Typography>
             <Typography
               className={classes.userCardLocation}
-              variant="subtitle1" component="p">
+              variant="inherit" component="p">
               <LocationOnIcon/> {city}
             </Typography>
           </Box>

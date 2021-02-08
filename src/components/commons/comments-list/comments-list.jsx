@@ -4,7 +4,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import CommentForm from "../comment-form/comment-form.connect";
 import Comment from "../comment/comment.connect";
 import {List} from "@material-ui/core";
-import {commentsType} from "../../../commonPropTypes";
+import {commentsType} from "../../../common-prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +17,7 @@ const CommentsList = (props) => {
   const {comments, postId} = props;
   const classes = useStyles();
 
-  const currentComments = comments.filter((comment) => comment.postId === parseInt(postId, 10));
+  const currentComments = comments.filter((comment) => comment.postId === +(postId) || comment.postId === postId);
 
   return (
     <>

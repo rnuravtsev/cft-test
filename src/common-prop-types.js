@@ -1,5 +1,8 @@
 export const commentsType = PropTypes.arrayOf(PropTypes.shape({
-  postId: PropTypes.number.isRequired,
+  postId: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired,
   id: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string

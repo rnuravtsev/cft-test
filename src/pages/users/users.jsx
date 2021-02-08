@@ -1,7 +1,7 @@
 import Header from "../../components/commons/sections/header/header";
 import UserCard from "../../components/commons/user-card/user-card";
 import {Grid} from "@material-ui/core";
-import {usersType} from "../../commonPropTypes";
+import {usersType} from "../../common-prop-types";
 
 const Users = (props) => {
   const {users} = props;

@@ -34,6 +34,16 @@ const appData = (state = initialState, action) => {
         comments: state.comments.filter((comment) => comment.id !== action.payload)
       });
 
+    case ActionType.ADD_POST:
+      return extend(state, {
+        posts: [action.payload, ...state.posts]
+      });
+
+    case ActionType.REMOVE_POST:
+      return extend(state, {
+        posts: state.posts.filter((post) => post.id !== action.payload)
+      });
+
     default:
       return state;
   }

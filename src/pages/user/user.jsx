@@ -52,9 +52,15 @@ const useStyles = makeStyles((theme) => ({
     color: `whitesmoke`,
   },
 
-  userInfoLocation: {
+  userInfoContact: {
     display: `flex`,
-    alignItems: `center`
+    alignItems: `center`,
+    "& a": {
+      color: theme.palette.gray.light,
+      "&:hover": {
+        color: theme.palette.gray.main
+      }
+    }
   },
 
   userInfoText: {
@@ -121,29 +127,29 @@ const User = (props) => {
                   />
                   <h2 className={classes.userInfoName}>{name}</h2>
                 </Box>
-                <Box m={3}>
+                <Box my={3}>
                   <Box mb={3}>
                     <Typography className={classes.userInfoText} variant="h5" component="h3">
                       <Box fontWeight={500}>
-                        @{username}
+                        @{username.toLowerCase()}
                       </Box>
                     </Typography>
                   </Box>
                   <Grid container spacing={2}>
                     <Grid item>
-                      <Typography className={classes.userInfoLocation} component="p">
+                      <Typography className={classes.userInfoContact} component="p">
                         <LocationOnIcon className={classes.userInfoIcon} fontSize="small"/>
                         <a href={`https://www.google.com/maps/place/${address.city}`}>{address.city}</a>
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography className={classes.userInfoLocation} component="p">
+                      <Typography className={classes.userInfoContact} component="p">
                         <MailIcon className={classes.userInfoIcon} fontSize="small"/>
                         <a href={`mailto:${email}`}>{email}</a>
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography className={classes.userInfoLocation} component="p">
+                      <Typography className={classes.userInfoContact} component="p">
                         <PhoneIcon className={classes.userInfoIcon} fontSize="small"/>
                         <a href={`tel:${phone}`}>{phone}</a>
                       </Typography>
@@ -152,9 +158,9 @@ const User = (props) => {
                 </Box>
               </div>
             </Grid>
-            <Grid item xs={12}>
-              <Posts userId={id}/>
-            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Posts userId={id}/>
           </Grid>
         </Grid>
       </Grid>
