@@ -24,13 +24,16 @@ const CommentsList = (props) => {
       <Box my={3}>
         <CommentForm postId={postId}/>
       </Box>
-      <List className={classes.root}>
-        {currentComments.map((comment) => (
-          <Fragment key={comment.id}>
-            <Comment comment={comment}/>
-          </Fragment>
-        ))}
-      </List>
+      {
+        currentComments.length > 0 &&
+        <List className={classes.root}>
+          {currentComments.map((comment) => (
+            <Fragment key={comment.id}>
+              <Comment comment={comment}/>
+            </Fragment>
+          ))}
+        </List>
+      }
     </>
   );
 };

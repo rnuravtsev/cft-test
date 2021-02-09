@@ -40,8 +40,20 @@ const NewPost = (props) => {
     body: ``,
     userId
   });
+  const [isButtonDisabled, setButtonDisabled] = React.useState(true);
 
   const classes = useStyles();
+
+  const postTitleRef = React.createRef();
+  const bodyTitleRef = React.createRef();
+
+  const checkForm = () => {
+    const isValid = postTitleRef.current.value.length > 3 && bodyTitleRef.current.value.length > 3;
+
+    return isValid ?
+      setButtonDisabled(false) :
+      setButtonDisabled(true);
+  };
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
@@ -54,6 +66,7 @@ const NewPost = (props) => {
       ...postData,
       [target.name]: target.value
     }));
+    checkForm();
   };
 
   return (
@@ -68,7 +81,7 @@ const NewPost = (props) => {
       >
         Add new post
       </Typography>
-      <form className={classes.postForm} onSubmit={onFormSubmit}>
+      <form className={classes.postForm} onSubmit={onFormSubmit} autoComplete="off">
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <TextField
@@ -82,7 +95,8 @@ const NewPost = (props) => {
               variant="outlined"
               required
               inputProps={{
-                className: classes.postInput
+                className: classes.postInput,
+                ref: postTitleRef
               }}
               onChange={onInputChange}
             />
@@ -94,13 +108,18 @@ const NewPost = (props) => {
               name="body"
               rows={3}
               color="secondary"
-              placeholder="Что у вас нового?"
+              label="Что у вас нового?"
               multiline
               fullWidth
               variant="outlined"
               required
+
+              helperText={
+                <span>Количество символов заголовка и тела поста должны быть не менее трёх</span>
+              }
               inputProps={{
-                className: classes.postInput
+                className: classes.postInput,
+                ref: bodyTitleRef
               }}
               onChange={onInputChange}
             />
@@ -112,6 +131,7 @@ const NewPost = (props) => {
               fullWidth
               startIcon={<AddIcon/>}
               type="submit"
+              disabled={isButtonDisabled}
             >
               Add
             </Button>
