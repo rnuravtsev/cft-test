@@ -29,7 +29,11 @@ const useStyles = makeStyles((theme) => ({
     "& fieldset": {
       color: theme.palette.secondary.main,
       borderColor: theme.palette.secondary.main,
-    },
+    }
+  },
+
+  hidden: {
+    display: `none`
   }
 }));
 
@@ -56,16 +60,19 @@ const NewPost = (props) => {
   };
 
   const onFormSubmit = (evt) => {
+    const {target} = evt;
+
     evt.preventDefault();
     addPost({...postData, id: nanoid(10)});
+    target.reset();
   };
 
   const onInputChange = (evt) => {
-    const {target} = evt;
-    setPostData(() => ({
+    const {target: {name, value}} = evt;
+    setPostData({
       ...postData,
-      [target.name]: target.value
-    }));
+      [name]: value
+    });
     checkForm();
   };
 
@@ -115,7 +122,7 @@ const NewPost = (props) => {
               required
 
               helperText={
-                <span>Количество символов заголовка и тела поста должны быть не менее трёх</span>
+                <span className={!isButtonDisabled ? classes.hidden : null}>Количество символов заголовка и тела поста должны быть не менее трёх</span>
               }
               inputProps={{
                 className: classes.postInput,

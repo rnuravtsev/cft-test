@@ -1,5 +1,12 @@
-import {Button, Paper, Typography, TextField, TextareaAutosize, makeStyles} from "@material-ui/core";
+import {Button, Paper, Typography, TextField, makeStyles} from "@material-ui/core";
 import {nanoid} from "nanoid";
+
+
+const Comment = {
+  NAME_MIN_LENGTH: 1,
+  EMAIL_MIN_LENGTH: 5,
+  BODY_MIN_LENGTH: 3
+};
 
 const useStyles = makeStyles((theme) => ({
   commentFormPaper: {
@@ -42,41 +49,60 @@ const useStyles = makeStyles((theme) => ({
   commentFormButton: {
     display: `block`,
     margin: `16px auto`
+  },
+
+  commentFormButtonError: {
+    backgroundColor: theme.palette.success.main
+  },
+
+  commentFormButtonSuccess: {
+    backgroundColor: theme.palette.success.main
+  },
+
+  hidden: {
+    display: `none`
   }
 }));
 
 const CommentForm = (props) => {
   const {onSubmit, postId} = props;
-  const [comment, setComment] = React.useState({
+  const initialStateComment = {
     postId,
     name: ``,
     email: ``,
     body: ``
-  });
+  };
+
+  const [comment, setComment] = React.useState(initialStateComment);
+  const [isFormValid, setFormValid] = React.useState(false);
 
   const classes = useStyles();
 
-  const formSubmitHandler = (evt) => {
+  const checkForm = () => {
+    const checkEmail = () => {
+      const pattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+      return pattern.test(comment.email) && (comment.email.length > Comment.EMAIL_MIN_LENGTH);
+    };
+    const checkBody = () => comment.body.length > Comment.BODY_MIN_LENGTH;
+    const checkName = () => comment.name.length > Comment.NAME_MIN_LENGTH;
+    return checkEmail() && checkBody() && checkName() ? setFormValid(true) : setFormValid(false);
+  };
+
+  const onFormSubmit = (evt) => {
     evt.preventDefault();
     onSubmit(postId, {...comment, id: nanoid(10)});
+    setComment(initialStateComment);
+    setFormValid(false);
+    evt.target.reset();
   };
 
-  const textareaAutosizeChangeHandler = (evt) => {
-    const {target} = evt;
-
-    setComment(() => ({
+  const onInputChange = (evt) => {
+    const {target: {name, value}} = evt;
+    setComment({
       ...comment,
-      body: target.value
-    }));
-  };
-
-  const textFieldChangeHandler = (evt) => {
-    const {target} = evt;
-
-    setComment(() => ({
-      ...comment,
-      [target.name]: target.value
-    }));
+      [name]: value
+    });
+    checkForm();
   };
 
   return (
@@ -94,30 +120,35 @@ const CommentForm = (props) => {
       <form
         className={classes.commentForm}
         autoComplete="off"
-        onSubmit={formSubmitHandler}
+        onSubmit={onFormSubmit}
       >
         <TextField
-          className={classes.commentFormTextArea}
           id="comment-name"
           name="name"
           label="Введите имя"
           required
-          onChange={textFieldChangeHandler}
+          onChange={onInputChange}
+          margin="dense"
         />
         <TextField
-          className={classes.commentFormTextArea}
           type="email"
           id="comment-email"
           name="email"
-          label="Введите email"
+          label="Введите адрес электронной почты"
           required
-          onChange={textFieldChangeHandler}
+          margin="dense"
+          onChange={onInputChange}
         />
-        <TextareaAutosize
-          rowsMin={5}
-          id="comment-text"
+        <TextField
+          multiline
+          rows={2}
+          id="comment-body"
+          name="body"
           placeholder="Введите комментарий"
-          onChange={textareaAutosizeChangeHandler}
+          onChange={onInputChange}
+          helperText={
+            <span className={isFormValid ? classes.hidden : null}>Вспомогающее сообщение</span>
+          }
           required
         />
         <Button
@@ -126,7 +157,7 @@ const CommentForm = (props) => {
           color="primary"
           size="large"
           variant="contained"
-          disabled={comment.body.length < 10}
+          disabled={!isFormValid}
         >
           Отправить
         </Button>
